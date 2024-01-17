@@ -8,8 +8,10 @@ builder.Logging.AddAzureWebAppDiagnostics();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+IServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
+IConfiguration configuration = (IConfiguration)serviceProvider.GetRequiredService(typeof(IConfiguration));
 builder.Services.AddDbContext<MyDatabaseContext>(options =>
-                    options.UseSqlite("Data Source=localdatabase.db"));
+                    options.UseSqlServer(configuration.GetConnectionString("MyDbConnection")));
 
 var app = builder.Build();
 
