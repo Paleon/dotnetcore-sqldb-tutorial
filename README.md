@@ -1,3 +1,5 @@
+This is a fork for just testing and getting familiar with Azure
+
 ---
 languages:
 - csharp
